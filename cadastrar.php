@@ -1,12 +1,12 @@
 <?php
 include('conexao.php');
 
-/*Cria as variáveis que receberão os dados do formulário*/
-$nome  = $_POST["nome"];
-$email = $_POST["email"];
-$senha = $_POST["senha"];
+$datas = $_POST['data'];
 
-/*Mostra na página os dados digitados com exceção da senha*/
+$nome     =    $datas['nome'];
+$email    =    $datas['email'];
+$senha    =    $datas['senha'];
+
 echo "<h3>nome:   $nome</h3>";
 echo "<h3>email:  $email</h3>";
 echo "<h3>senha:  A senha é secreta</h3>";
@@ -14,10 +14,8 @@ echo "<h3>senha:  A senha é secreta</h3>";
 
 /*FORMA PROCEDURAL*/
 
-//String para receber código SQL para inserção em banco de dados
 $cad_usuario = "INSERT INTO usuario (nome, email, senha) VALUES ('$nome', '$email', md5('$senha'))";
 
-//Estrutura de decisão para executar código SQL
 if (mysqli_query($conn, $cad_usuario)) {
       echo "<h1>Novo cadastro realizado </h1></br>";
 } else {

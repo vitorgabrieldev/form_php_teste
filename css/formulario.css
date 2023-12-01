@@ -41,3 +41,9 @@ h4{
    	background-color: #FCC302;
    	font-size: 18px;
 }
+
+.required {
+	color: rgb(241, 82, 82);
+	font-size: .7rem;
+	font-weight: 900;
+}

@@ -20,7 +20,7 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `DBCadUser`
 --
-CREATE DATABASE IF NOT EXISTS `DBCadUser` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+CREATE DATABASE IF NOT EXISTS `DBCadUser_vitor` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `DBCadUser`;
 
 -- --------------------------------------------------------

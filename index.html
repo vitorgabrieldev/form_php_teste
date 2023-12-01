@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+	<head>
+		<title>Cadastro de usuário</title>
+		<meta charset="UTF-8"/>
+		<link rel="stylesheet" type="text/css" href="css/formulario.css">
+		<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	</head>
+	<body>
+		<main class="container">
+			<h2>Cadastre-se!</h2>
+			<form method="post" id="form">
+				<div>
+					<label>Nome <span class="required" style="color: rgb(241, 82, 82);font-size: .7rem;font-weight: 900;">Required</span></label>
+					<input type="text" name="nome" id="nome" placeholder="Nome"/>
+				</div></br> 
+				<div>
+					<label>e-mail <span class="required" style="color: rgb(241, 82, 82);font-size: .7rem;font-weight: 900;">Required</span></label>
+					<input type="email" name="email" id="email" placeholder="usuario@mail.com"/>
+				</div></br>
+				<div>
+					<label>senha <span class="required" style="color: rgb(241, 82, 82);font-size: .7rem;font-weight: 900;">Required</span></label>
+					<input type="password" name="senha" id="senha" placeholder="senha"/>
+				</div></br>
+				<div id="botao">
+					<input type="submit" class="btn_enviar" name="cadastrar" value="Cadastrar">
+				</div>
+			</form>
+		</main>
+
+		<script>
+
+			$('.required').hide();
+
+			document.getElementById('form').addEventListener('submit', (e) => {
+				e.preventDefault();
+
+				if ( $('#nome').val() && $('#email').val() && $('#senha').val() ) {
+					cadastro();
+				} else {
+					$('.required').show().fadeIn();
+				}; 
+			});
+
+			const cadastro = () => {
+
+				var data = {
+					nome : $('#nome').val(),
+					email : $('#email').val(),
+					senha : $('#senha').val(),
+				};
+
+				$.ajax({
+					url: 'cadastrar.php',
+					type :  'POST',
+                    data : {data : data},
+
+					timeout: 5000, // Tempo de Espera - 5 segundos
+
+					success: (data) => {
+
+						$('.required').hide();
+
+						Swal.fire({
+							title: "Sucesso",
+							text: "Cadastro realizado!",
+							icon: "success"
+						});
+					},
+					error: ( xhr, status, error ) => {
+						console.error(xhr.responseText);
+						Swal.fire({
+							title: "Erro",
+							text: "Erro na requisição AJAX",
+							icon: "error"
+						});
+					},
+				});
+			};
+		</script>
+	</body>
+</html>
